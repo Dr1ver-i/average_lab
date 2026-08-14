@@ -12,11 +12,7 @@ st.set_page_config(
 st.title("📊 平均数AI实验室")
 st.write("自由设置数据数量，输入数据名称和数值，观察平均数变化")
 
-
-# =====================
 # 设置数据数量
-# =====================
-
 st.sidebar.header("⚙️ 实验设置")
 
 
@@ -28,23 +24,16 @@ number = st.sidebar.number_input(
     step=1
 )
 
-
 st.sidebar.write(
     f"当前设置：{number} 个数据"
 )
 
 
-
-# =====================
 # 输入数据
-# =====================
-
 st.subheader("📝 输入数据")
-
 
 names = []
 values = []
-
 
 for i in range(int(number)):
 
@@ -72,13 +61,7 @@ for i in range(int(number)):
     names.append(name)
     values.append(value)
 
-
-
-# =====================
 # 数据处理
-# =====================
-
-
 data = pd.DataFrame(
     {
         "名称": names,
@@ -86,23 +69,12 @@ data = pd.DataFrame(
     }
 )
 
-
 st.subheader("📋 数据展示")
-
 st.dataframe(data)
-
-
-
 total = sum(values)
-
 average = total / number
 
-
-
-# =====================
 # 结果显示
-# =====================
-
 col1,col2,col3 = st.columns(3)
 
 
@@ -112,13 +84,11 @@ with col1:
         number
     )
 
-
 with col2:
     st.metric(
         "总和",
         round(total,2)
     )
-
 
 with col3:
     st.metric(
@@ -126,12 +96,7 @@ with col3:
         round(average,2)
     )
 
-
-
-# =====================
 # 图表
-# =====================
-
 st.subheader("📊 数据变化图")
 
 
@@ -151,18 +116,10 @@ fig.add_hline(
 
 st.plotly_chart(fig)
 
-
-
-# =====================
 # AI解释
-# =====================
-
 st.subheader("🤖 AI数学助手")
-
-
 max_value=max(values)
 min_value=min(values)
-
 
 if max_value-min_value > average:
 
@@ -192,16 +149,8 @@ else:
         大多数数据接近平均水平。
         """
     )
-
-
-
-# =====================
 # 数学过程
-# =====================
-
 st.subheader("✏️ 平均数计算")
-
-
 st.write(
     f"""
     数据总和：
